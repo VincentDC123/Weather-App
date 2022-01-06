@@ -1,0 +1,11 @@
+<resources>
+    <string name="app_name">Weather App</string>
+    <string name="label_city">City</string>
+    <string name="cityName">Enter city</string>
+    <string name="label_state">State</string>
+    <string name="stateName">Enter state</string>
+    <string name="checkTemp">CHECK TEMPERATURE</string>
+    <string name="label_temp">Temperature</string>
+    <string name="label_country">Country/State</string>
+    <string name="countryName">Enter country/state</string>
+</resources>

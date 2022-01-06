@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:layout_margin="@dimen/activity_margin" >
+
+    <RelativeLayout
+        android:id="@+id/inputLayout"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@drawable/background"
+        android:visibility="visible">
+
+        <TextView
+            android:id="@+id/label_city"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="50dp"
+            android:layout_marginLeft="20dp"
+            android:text="@string/label_city" />
+
+        <EditText
+            android:id="@+id/data_city"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignStart="@+id/data_country"
+            android:layout_alignBottom="@+id/label_city"
+            android:layout_alignParentEnd="true"
+            android:layout_marginEnd="20dp"
+            android:layout_toEndOf="@+id/label_city"
+            android:hint="@string/cityName"
+            android:inputType="text" />
+
+        <TextView
+            android:id="@+id/label_country"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/label_city"
+            android:layout_marginTop="50dp"
+            android:layout_marginLeft="20dp"
+            android:text="@string/label_country" />
+
+        <EditText
+            android:id="@+id/data_country"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignBottom="@+id/label_country"
+            android:layout_alignParentEnd="true"
+            android:layout_marginStart="25dp"
+            android:layout_marginEnd="20dp"
+            android:layout_toEndOf="@+id/label_country"
+            android:hint="@string/stateName"
+            android:inputType="text" />
+
+        <Button
+            android:id="@+id/checkTemp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/data_country"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="50dp"
+            android:layout_marginBottom="20dp"
+            android:onClick="goBack"
+            android:text="@string/checkTemp" />
+    </RelativeLayout>
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_below="@id/inputLayout">
+
+        <TextView
+            android:id="@+id/label_temp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="100dp"
+            android:layout_marginRight="50dp"
+            android:layout_marginLeft="75dp"
+            android:layout_weight="1"
+            android:layout_centerHorizontal="true"
+            android:layout_below="@+id/data_description"
+            android:textSize="30dp"/>
+
+        <RelativeLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+            <ImageView
+                android:layout_height="100dp"
+                android:layout_width="100dp"
+                android:id="@+id/picture"
+                android:scaleType="fitCenter"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="30dp" />
+            <TextView
+                android:id="@+id/data_description"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="2dp"
+                android:layout_marginBottom="30dp"
+                android:layout_below="@+id/picture"
+                android:layout_centerHorizontal="true"
+                android:textSize="30dp" />
+        </RelativeLayout>
+
+    </LinearLayout>
+</RelativeLayout>
