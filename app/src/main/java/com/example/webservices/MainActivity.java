@@ -6,6 +6,7 @@ import androidx.core.app.ActivityCompat;
 
 import android.Manifest;
 import android.annotation.SuppressLint;
+import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.location.Address;
 import android.location.Geocoder;
@@ -14,6 +15,8 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.os.Looper;
 import android.util.Log;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -36,7 +39,7 @@ public class MainActivity extends AppCompatActivity {
     public static final char DEGREE = '\u00B0';
     public static final String STARTING_URL = "http:/api.openweathermap.org/data/2.5/weather?q=";
     public static final String KEY_NAME = "&appid=";
-    private String Key = "**************************";
+    private String Key = "*****************************";
     String json;
 
     EditText CityText, CountryText;
@@ -170,5 +173,29 @@ public class MainActivity extends AppCompatActivity {
                 }
             }
         });
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+
+        getMenuInflater().inflate(R.menu.menu_main, menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+        int id = item.getItemId();
+        switch(id) {
+            case R.id.main_activity:
+                Log.w("MainActivity", "Already in Main Activity");
+//                Intent mainIntent = new Intent(this, MainActivity.class);
+//                this.startActivity(mainIntent);
+                return true;
+            case R.id.forecast_activity:
+                Log.w("MainActivity", "Going to Forecast Activity");
+                return true;
+            default:
+                return super.onOptionsItemSelected(item);
+        }
     }
 }

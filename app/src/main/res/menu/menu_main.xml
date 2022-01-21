@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+    <item
+        android:id="@+id/main_activity"
+        android:title="Current Weather"
+        app:showAsAction="collapseActionView"/>
+
+    <item
+        android:id="@+id/forecast_activity"
+        android:title="7 Day Forecast"
+        app:showAsAction="collapseActionView" />
+
+</menu>
