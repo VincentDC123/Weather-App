@@ -2,6 +2,14 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools">
+
+    <item
+        android:id="@+id/FC"
+        android:title="F"
+        app:showAsAction="ifRoom">
+
+    </item>
+
     <item
         android:id="@+id/main_activity"
         android:title="Current Weather"
@@ -11,5 +19,4 @@
         android:id="@+id/forecast_activity"
         android:title="7 Day Forecast"
         app:showAsAction="collapseActionView" />
-
 </menu>

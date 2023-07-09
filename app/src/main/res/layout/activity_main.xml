@@ -12,52 +12,50 @@
         android:background="@drawable/background"
         android:visibility="visible">
 
-        <TextView
+        <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/label_city"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="50dp"
             android:layout_marginLeft="20dp"
-            android:text="@string/label_city" />
+            android:layout_marginRight="20dp"
+            android:hint="City"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
 
-        <EditText
-            android:id="@+id/data_city"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignStart="@+id/data_country"
-            android:layout_alignBottom="@+id/label_city"
-            android:layout_alignParentEnd="true"
-            android:layout_marginEnd="20dp"
-            android:layout_toEndOf="@+id/label_city"
-            android:hint="@string/cityName"
-            android:inputType="text" />
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/data_city"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:maxLength="33"
+                android:digits="abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ"/>
 
-        <TextView
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/label_country"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_below="@+id/label_city"
             android:layout_marginTop="50dp"
             android:layout_marginLeft="20dp"
-            android:text="@string/label_country" />
+            android:layout_marginRight="20dp"
+            android:hint="Country/State"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
 
-        <EditText
-            android:id="@+id/data_country"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignBottom="@+id/label_country"
-            android:layout_alignParentEnd="true"
-            android:layout_marginStart="25dp"
-            android:layout_marginEnd="20dp"
-            android:layout_toEndOf="@+id/label_country"
-            android:hint="@string/stateName"
-            android:inputType="text" />
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/data_country"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:maxLength="33"
+                android:digits="abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ"/>
+
+        </com.google.android.material.textfield.TextInputLayout>
 
         <Button
             android:id="@+id/checkTemp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/data_country"
+            android:layout_below="@+id/label_country"
             android:layout_centerHorizontal="true"
             android:layout_marginTop="50dp"
             android:layout_marginBottom="20dp"

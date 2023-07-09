@@ -6,6 +6,7 @@ import androidx.core.app.ActivityCompat;
 
 import android.Manifest;
 import android.annotation.SuppressLint;
+import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.location.Address;
@@ -18,9 +19,12 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.google.android.gms.location.FusedLocationProviderClient;
@@ -39,12 +43,15 @@ public class MainActivity extends AppCompatActivity {
     public static final char DEGREE = '\u00B0';
     public static final String STARTING_URL = "http:/api.openweathermap.org/data/2.5/weather?q=";
     public static final String KEY_NAME = "&appid=";
-    private String Key = "*****************************";
+    private String Key = BuildConfig.OpenWeatherMap_API_KEY;
     String json;
 
     EditText CityText, CountryText;
     TextView temp, description;
     ImageView picture;
+
+    private boolean F = true;
+    private double temperature = 0;
 
     FusedLocationProviderClient fusedLocationProviderClient;
 
@@ -73,6 +80,12 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View v) {
                 ExecutorService executor = Executors.newSingleThreadExecutor();
                 Handler handler = new Handler(Looper.getMainLooper());
+
+                // Hiding keyboard
+                RelativeLayout layout = (RelativeLayout) findViewById(R.id.inputLayout);
+                InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
+                imm.hideSoftInputFromWindow(layout.getWindowToken(), 0);
+
                 executor.execute(new Runnable () {
                     @Override
                     public void run() {
@@ -102,7 +115,12 @@ public class MainActivity extends AppCompatActivity {
 
 
                                 Log.w("MainActivity", String.valueOf(parser.getTemperatureK()) + DEGREE + "K");
-                                temp.setText(String.valueOf(parser.getTemperatureF()) + DEGREE + "F");
+                                temperature = parser.getTemperatureK();
+                                if(F) {
+                                    temp.setText(String.valueOf(parser.getTemperatureF()) + DEGREE + "F");
+                                } else {
+                                    temp.setText(String.valueOf(parser.getTemperatureC()) + DEGREE + "C");
+                                }
                             }
                         });
                     }
@@ -162,6 +180,7 @@ public class MainActivity extends AppCompatActivity {
 
 
                                         Log.w("MainActivity", String.valueOf(parser.getTemperatureK()) + DEGREE + "K");
+                                        temperature = parser.getTemperatureK();
                                         temp.setText(String.valueOf(parser.getTemperatureF()) + DEGREE + "F");
                                     }
                                 });
@@ -194,6 +213,20 @@ public class MainActivity extends AppCompatActivity {
             case R.id.forecast_activity:
                 Log.w("MainActivity", "Going to Forecast Activity");
                 return true;
+            case R.id.FC:
+                final double ZERO_K = -273.15;
+                temp = findViewById(R.id.label_temp);
+                if(F) {
+                    item.setTitle("C");
+                    double tempTemperature = Math.floor(temperature + ZERO_K + 0.5);
+                    temp.setText(String.valueOf((int)tempTemperature) + DEGREE + "C");
+                    F = false;
+                } else {
+                    item.setTitle("F");
+                    double tempTemperature = Math.floor((temperature + ZERO_K) * 9 / 5 + 32 + 0.5);
+                    temp.setText(String.valueOf((int)tempTemperature) + DEGREE + "F");
+                    F = true;
+                }
             default:
                 return super.onOptionsItemSelected(item);
         }
