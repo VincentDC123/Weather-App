@@ -16,9 +16,11 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.os.Looper;
 import android.util.Log;
+import android.view.KeyEvent;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.inputmethod.EditorInfo;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.EditText;
@@ -74,6 +76,11 @@ public class MainActivity extends AppCompatActivity {
                     new String[]{Manifest.permission.ACCESS_FINE_LOCATION}, 44);
         }
 
+        // Hiding keyboard
+        RelativeLayout layout = (RelativeLayout) findViewById(R.id.inputLayout);
+        InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
+
+
         Button button = findViewById(R.id.checkTemp);
         button.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -81,9 +88,6 @@ public class MainActivity extends AppCompatActivity {
                 ExecutorService executor = Executors.newSingleThreadExecutor();
                 Handler handler = new Handler(Looper.getMainLooper());
 
-                // Hiding keyboard
-                RelativeLayout layout = (RelativeLayout) findViewById(R.id.inputLayout);
-                InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
                 imm.hideSoftInputFromWindow(layout.getWindowToken(), 0);
 
                 executor.execute(new Runnable () {
@@ -127,6 +131,31 @@ public class MainActivity extends AppCompatActivity {
                 });
 
             }
+        });
+
+        CityText.setOnEditorActionListener(new TextView.OnEditorActionListener() {
+            @Override
+            public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
+                if((event != null && (event.getKeyCode() == KeyEvent.KEYCODE_ENTER)) || (actionId == EditorInfo.IME_ACTION_DONE)) {
+                    // Hiding keyboard
+                    imm.hideSoftInputFromWindow(layout.getWindowToken(), 0);
+                    CityText.performClick();
+                }
+                return false;
+            }
+
+        });
+        CountryText.setOnEditorActionListener(new TextView.OnEditorActionListener() {
+            @Override
+            public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
+                if((event != null && (event.getKeyCode() == KeyEvent.KEYCODE_ENTER)) || (actionId == EditorInfo.IME_ACTION_DONE)) {
+                    // Hiding keyboard
+                    imm.hideSoftInputFromWindow(layout.getWindowToken(), 0);
+                    CityText.performClick();
+                }
+                return false;
+            }
+
         });
     }
 
